@@ -326,8 +326,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 500px;
+  width: 800px;
+  height: 800px;
   background: url('../shared/assets/mascota_abc_nice.jpeg') center/contain no-repeat;
   opacity: 0.06;
   filter: blur(2px) grayscale(30%);
