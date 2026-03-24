@@ -1,0 +1,21 @@
+{
+  "company": "Malpica, Iturbe, Buj & Paredes S.C.",
+  "companyShort": "MIBP",
+  "website": "www.mibp.com.mx",
+  "colors": {
+    "primary": "#8B1A1A",
+    "text": "#333333",
+    "accent": "#8B1A1A",
+    "secondary": "#666666",
+    "links": "#2A7B88"
+  },
+  "logo": "logo.png",
+  "topBorder": false,
+  "fields": [
+    { "id": "fullName", "label": "Full Name", "required": true },
+    { "id": "jobTitle", "label": "Job Title / Position", "placeholder": "Malpica, Iturbe, Buj & Paredes S.C." },
+    { "id": "phone", "label": "Phone", "placeholder": "+52 5535229018" },
+    { "id": "email", "label": "Email", "required": true, "placeholder": "name@mibp.com.mx" }
+  ],
+  "template": "mibp"
+}

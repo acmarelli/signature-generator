@@ -226,6 +226,32 @@ ${html}
 </table>`;
     },
 
+    // MIBP law firm template
+    mibp: function (cfg, data) {
+      const name = data.fullName || 'Full Name';
+      const title = data.jobTitle || cfg.company;
+      const phone = data.phone || '';
+      const email = data.email || 'email@mibp.com.mx';
+      const website = cfg.website;
+      const logoPath = cfg.logo;
+      const linkColor = cfg.colors.links || cfg.colors.primary;
+
+      return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:${cfg.colors.text};line-height:1.6;">
+  <tr>
+    <td style="vertical-align:top;padding-right:18px;width:90px;">
+      <img src="${logoPath}" alt="${cfg.companyShort || cfg.company}" style="width:80px;height:auto;" />
+    </td>
+    <td style="vertical-align:top;">
+      <div style="font-size:15px;font-weight:bold;color:${cfg.colors.primary};margin-bottom:1px;">${name}</div>
+      <div style="font-size:13px;color:${cfg.colors.secondary};margin-bottom:4px;">${title}</div>
+      ${phone ? `<div style="margin-bottom:2px;"><a href="tel:${phone.replace(/\s/g,'')}" style="font-size:13px;color:${linkColor};text-decoration:none;">${phone}</a></div>` : ''}
+      <div style="margin-bottom:2px;"><a href="mailto:${email}" style="font-size:13px;color:${linkColor};text-decoration:none;">${email}</a></div>
+      <div><a href="https://${website}" style="font-size:13px;color:${linkColor};text-decoration:none;">${website}</a></div>
+    </td>
+  </tr>
+</table>`;
+    },
+
     // Generic default template
     default: function (cfg, data) {
       const name = data.fullName || 'Full Name';
