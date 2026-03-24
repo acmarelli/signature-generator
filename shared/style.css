@@ -68,6 +68,28 @@ body {
   top: 20px;
 }
 
+/* Preview Branding Strip */
+.preview-branding {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.preview-branding img {
+  height: 28px;
+  width: auto;
+}
+
+.preview-branding span {
+  font-size: 0.8rem;
+  color: #aaa;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
 .preview-panel h2 {
   font-size: 0.85rem;
   text-transform: uppercase;
