@@ -1,0 +1,21 @@
+{
+  "company": "Sesma",
+  "website": "www.sesma.com.mx",
+  "colors": {
+    "primary": "#9B1B30",
+    "text": "#333333",
+    "accent": "#C8A951",
+    "secondary": "#666666"
+  },
+  "logo": "logo-only.gif",
+  "topBorder": true,
+  "locations": ["Mexico City", "Monterrey", "Querétaro", "Guadalajara"],
+  "fields": [
+    { "id": "fullName", "label": "Full Name", "required": true },
+    { "id": "jobTitle", "label": "Job Title", "required": true, "placeholder": "Abogado / Attorney" },
+    { "id": "primaryCity", "label": "Primary City", "type": "select", "options": "locations" },
+    { "id": "phone", "label": "Phone", "placeholder": "+52 (55) 3095 3077" },
+    { "id": "email", "label": "Email", "required": true, "placeholder": "name@sesmalaw.com.mx" }
+  ],
+  "template": "sesma"
+}
