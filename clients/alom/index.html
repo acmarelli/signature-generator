@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alom - Email Signature Generator</title>
+  <link rel="stylesheet" href="../../shared/style.css">
+</head>
+<body>
+
+  <div class="header">
+    <h1>Email Signature Generator</h1>
+    <span class="company-badge">Alom</span>
+  </div>
+
+  <div class="container">
+    <!-- Preview Panel -->
+    <div class="preview-panel">
+      <h2>Signature Preview</h2>
+      <div id="signature-preview"></div>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="SignatureApp.copyToClipboard()">
+          <span class="icon">&#128203;</span> Copy to Clipboard
+        </button>
+        <button class="btn btn-secondary" onclick="SignatureApp.downloadHTML()">
+          <span class="icon">&#11015;</span> Download HTML
+        </button>
+      </div>
+    </div>
+
+    <!-- Form Panel -->
+    <div class="form-panel">
+      <h2>Personalise</h2>
+      <div id="form-fields"></div>
+    </div>
+  </div>
+
+  <!-- Install Instructions -->
+  <div class="instructions">
+    <div class="instructions-card">
+      <h3>How to Install Your Signature</h3>
+      <div class="tabs">
+        <button class="tab active" data-tab="gmail">Gmail</button>
+        <button class="tab" data-tab="outlook">Outlook</button>
+        <button class="tab" data-tab="applemail">Apple Mail</button>
+      </div>
+      <div id="gmail" class="tab-content active">
+        <ol>
+          <li>Click <strong>"Copy to Clipboard"</strong> above.</li>
+          <li>Open Gmail and go to <strong>Settings</strong> (gear icon) &rarr; <strong>See all settings</strong>.</li>
+          <li>Scroll down to the <strong>Signature</strong> section.</li>
+          <li>Create a new signature or edit an existing one.</li>
+          <li>Delete any existing content in the signature box, then <strong>paste</strong> (Ctrl+V / Cmd+V).</li>
+          <li>Scroll down and click <strong>Save Changes</strong>.</li>
+        </ol>
+      </div>
+      <div id="outlook" class="tab-content">
+        <ol>
+          <li>Click <strong>"Copy to Clipboard"</strong> above.</li>
+          <li>Open Outlook and go to <strong>Settings</strong> &rarr; <strong>Mail</strong> &rarr; <strong>Compose and reply</strong>.</li>
+          <li>Under <strong>Email signature</strong>, create a new signature or edit an existing one.</li>
+          <li>Clear the box, then <strong>paste</strong> (Ctrl+V / Cmd+V).</li>
+          <li>Click <strong>Save</strong>.</li>
+        </ol>
+      </div>
+      <div id="applemail" class="tab-content">
+        <ol>
+          <li>Click <strong>"Download HTML"</strong> above to download the signature file.</li>
+          <li>Open the downloaded HTML file in <strong>Safari</strong>.</li>
+          <li>Select all (Cmd+A) and copy (Cmd+C).</li>
+          <li>Open <strong>Mail</strong> &rarr; <strong>Settings</strong> &rarr; <strong>Signatures</strong>.</li>
+          <li>Create a new signature and paste (Cmd+V).</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../shared/signature.js"></script>
+</body>
+</html>

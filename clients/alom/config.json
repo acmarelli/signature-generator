@@ -1,0 +1,20 @@
+{
+  "company": "Alom",
+  "website": "alominfra.com",
+  "colors": {
+    "primary": "#008080",
+    "text": "#333333",
+    "accent": "#008080",
+    "secondary": "#666666"
+  },
+  "logo": "logo.png",
+  "topBorder": false,
+  "fields": [
+    { "id": "fullName", "label": "Full Name", "required": true },
+    { "id": "jobTitle", "label": "Job Title", "required": true },
+    { "id": "email", "label": "Email", "required": true, "placeholder": "name@alominfra.com" },
+    { "id": "phoneOffice", "label": "Office Phone (T:)", "placeholder": "+52 (55) 97-64-0047 Ext. 602" },
+    { "id": "phoneDirect", "label": "Direct Phone (D:)", "placeholder": "+52 (55) 97-64-0069" }
+  ],
+  "template": "alom"
+}

@@ -195,6 +195,37 @@ ${html}
 </table>`;
     },
 
+    // Alom infrastructure template
+    alom: function (cfg, data) {
+      const name = data.fullName || 'Full Name';
+      const title = data.jobTitle || '';
+      const email = data.email || 'email@alominfra.com';
+      const phoneOffice = data.phoneOffice || '';
+      const phoneDirect = data.phoneDirect || '';
+      const website = cfg.website;
+      const logoPath = cfg.logo;
+
+      return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:${cfg.colors.text};line-height:1.5;">
+  <tr>
+    <td style="vertical-align:middle;padding-right:14px;border-right:2px solid ${cfg.colors.primary};">
+      <img src="${logoPath}" alt="${cfg.company}" style="width:120px;height:auto;" />
+    </td>
+    <td style="vertical-align:top;padding-left:14px;">
+      <div style="font-size:15px;font-weight:bold;color:${cfg.colors.text};margin-bottom:1px;">${name}</div>
+      ${title ? `<div style="font-size:12px;color:${cfg.colors.secondary};margin-bottom:4px;">${title}</div>` : ''}
+      <div style="margin-bottom:1px;"><a href="mailto:${email}" style="font-size:12px;color:${cfg.colors.primary};text-decoration:none;">${email}</a></div>
+      <div><a href="https://${website}" style="font-size:12px;color:${cfg.colors.primary};text-decoration:none;font-weight:bold;">${website}</a></div>
+    </td>
+  </tr>
+  ${(phoneOffice || phoneDirect) ? `<tr>
+    <td colspan="2" style="padding-top:8px;">
+      ${phoneOffice ? `<div style="font-size:12px;color:${cfg.colors.secondary};">T: ${phoneOffice}</div>` : ''}
+      ${phoneDirect ? `<div style="font-size:12px;color:${cfg.colors.secondary};">D: <a href="tel:${phoneDirect.replace(/\s/g,'')}" style="color:${cfg.colors.primary};text-decoration:none;">${phoneDirect}</a></div>` : ''}
+    </td>
+  </tr>` : ''}
+</table>`;
+    },
+
     // Generic default template
     default: function (cfg, data) {
       const name = data.fullName || 'Full Name';
