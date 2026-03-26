@@ -91,11 +91,33 @@
     preview.innerHTML = generateSignatureHTML();
   }
 
+  // Convert images in the preview to base64 using canvas
+  function inlineImagesFromPreview(html) {
+    const preview = document.getElementById('signature-preview');
+    const previewImgs = preview.querySelectorAll('img');
+    let result = html;
+    previewImgs.forEach(img => {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        const dataUrl = canvas.toDataURL('image/png');
+        result = result.replace(img.getAttribute('src'), dataUrl);
+      } catch (e) {
+        // keep original URL if canvas fails (CORS)
+      }
+    });
+    return result;
+  }
+
   // Copy signature to clipboard as rich HTML
   async function copyToClipboard() {
     const html = generateSignatureHTML();
     try {
-      const blob = new Blob([html], { type: 'text/html' });
+      const inlinedHtml = inlineImagesFromPreview(html);
+      const blob = new Blob([inlinedHtml], { type: 'text/html' });
       const item = new ClipboardItem({ 'text/html': blob });
       await navigator.clipboard.write([item]);
       showToast('Signature copied to clipboard!');
@@ -112,13 +134,14 @@
   }
 
   // Download as HTML file
-  function downloadHTML() {
+  async function downloadHTML() {
     const html = generateSignatureHTML();
+    const inlinedHtml = inlineImagesFromPreview(html);
     const fullHTML = `<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><title>Email Signature</title></head>
 <body>
-${html}
+${inlinedHtml}
 </body>
 </html>`;
     const blob = new Blob([fullHTML], { type: 'text/html' });
