@@ -7,7 +7,7 @@
     "accent": "#C8A951",
     "secondary": "#666666"
   },
-  "logo": "logo-only.gif",
+  "logo": "https://signatures.abcsistemas.ninja/clients/sesma/logo-only.gif",
   "topBorder": true,
   "locations": ["Mexico City", "Monterrey", "Querétaro", "Guadalajara"],
   "fields": [

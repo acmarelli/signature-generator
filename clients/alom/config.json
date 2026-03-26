@@ -7,7 +7,7 @@
     "accent": "#008080",
     "secondary": "#666666"
   },
-  "logo": "logo.png",
+  "logo": "https://signatures.abcsistemas.ninja/clients/alom/logo.png",
   "topBorder": false,
   "fields": [
     { "id": "fullName", "label": "Full Name", "required": true },
