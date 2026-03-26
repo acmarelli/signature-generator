@@ -9,7 +9,7 @@
     "secondary": "#666666",
     "links": "#2A7B88"
   },
-  "logo": "https://signatures.abcsistemas.ninja/clients/mibp/logo.png",
+  "logo": "https://raw.githubusercontent.com/acmarelli/signature-generator/main/clients/mibp/logo.png",
   "topBorder": false,
   "fields": [
     { "id": "fullName", "label": "Full Name", "required": true },
