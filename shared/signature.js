@@ -236,17 +236,55 @@ ${html}
       const logoPath = cfg.logo;
       const linkColor = cfg.colors.links || cfg.colors.primary;
 
-      return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:${cfg.colors.text};line-height:1.6;">
+      return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:${cfg.colors.text};line-height:1.6;">
   <tr>
-    <td style="vertical-align:top;padding-right:18px;width:90px;">
-      <img src="${logoPath}" alt="${cfg.companyShort || cfg.company}" style="width:80px;height:auto;" />
+    <td style="vertical-align:top;padding-right:16px;width:140px;">
+      <img src="${logoPath}" alt="${cfg.companyShort || cfg.company}" style="width:130px;height:auto;" />
     </td>
-    <td style="vertical-align:top;">
-      <div style="font-size:15px;font-weight:bold;color:${cfg.colors.primary};margin-bottom:1px;">${name}</div>
-      <div style="font-size:13px;color:${cfg.colors.secondary};margin-bottom:4px;">${title}</div>
-      ${phone ? `<div style="margin-bottom:2px;"><a href="tel:${phone.replace(/\s/g,'')}" style="font-size:13px;color:${linkColor};text-decoration:none;">${phone}</a></div>` : ''}
-      <div style="margin-bottom:2px;"><a href="mailto:${email}" style="font-size:13px;color:${linkColor};text-decoration:none;">${email}</a></div>
-      <div><a href="https://${website}" style="font-size:13px;color:${linkColor};text-decoration:none;">${website}</a></div>
+    <td style="vertical-align:middle;">
+      <div style="font-size:16px;font-weight:bold;color:${cfg.colors.text};margin-bottom:2px;">${name}</div>
+      <div style="font-size:14px;color:${cfg.colors.secondary};margin-bottom:4px;">${title}</div>
+      ${phone ? `<div style="margin-bottom:2px;"><a href="tel:${phone.replace(/\s/g,'')}" style="font-size:14px;color:${linkColor};text-decoration:underline;">${phone}</a></div>` : ''}
+      <div style="margin-bottom:2px;"><a href="mailto:${email}" style="font-size:14px;color:${linkColor};text-decoration:underline;">${email}</a></div>
+      <div><a href="https://${website}" style="font-size:14px;color:${linkColor};text-decoration:underline;">${website}</a></div>
+    </td>
+  </tr>
+</table>`;
+    },
+
+    // PEM Oil template
+    pemoil: function (cfg, data) {
+      const name = data.fullName || 'Full Name';
+      const title = data.jobTitle || '';
+      const email = data.email || 'email@pemoilgas.com';
+      const phone = data.phone || '';
+      const phone2 = data.phone2 || '';
+      const location = data.location || cfg.locations[0];
+      const logoUrl = cfg.logo;
+
+      // Extract just the address part after the dash
+      const address = location.includes(' — ') ? location.split(' — ')[1] : location;
+
+      return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:'Gill Sans','Gill Sans MT',Arial,Helvetica,sans-serif;border-collapse:collapse;background-color:transparent;">
+  <tr>
+    <td valign="middle" style="padding:0 18px 0 0;">
+      <img src="${logoUrl}" alt="PEM Oil &amp; Gas" style="height:74px;width:auto;border:0;display:block;">
+    </td>
+    <td style="border-left:2px solid ${cfg.colors.primary};padding:0 18px;"></td>
+    <td valign="top" style="padding:0;line-height:1.35;">
+      <div style="margin-bottom:10px;">
+        <p style="margin:0;font-size:18px;font-weight:300;letter-spacing:0.3px;color:${cfg.colors.primary};">${name}</p>
+        ${title ? `<p style="margin:2px 0 0 0;font-size:15px;color:#777777;">${title}</p>` : ''}
+      </div>
+      <div style="margin-bottom:10px;">
+        <p style="margin:0;font-size:13px;"><a href="mailto:${email}" style="color:#555555;text-decoration:none;">${email}</a></p>
+        ${phone ? `<p style="margin:2px 0 0 0;font-size:13px;"><a href="tel:${phone.replace(/\s/g,'')}" style="color:#555555;text-decoration:none;">${phone}</a></p>` : ''}
+        ${phone2 ? `<p style="margin:2px 0 0 0;font-size:13px;"><a href="tel:${phone2.replace(/\s/g,'')}" style="color:#555555;text-decoration:none;">${phone2}</a></p>` : ''}
+      </div>
+      <div>
+        <p style="margin:0;font-size:13px;color:#777777;">${cfg.company}</p>
+        <p style="margin:2px 0 0 0;font-size:13px;color:#888888;">${address}</p>
+      </div>
     </td>
   </tr>
 </table>`;

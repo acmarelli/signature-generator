@@ -1,0 +1,30 @@
+{
+  "company": "Production Enhancement México, S de R.L. de C.V.",
+  "companyShort": "PEM Oil",
+  "website": "pemoilgas.com",
+  "colors": {
+    "primary": "#1f4f3b",
+    "text": "#333333",
+    "accent": "#1f4f3b",
+    "secondary": "#777777"
+  },
+  "logo": "https://images.squarespace-cdn.com/content/660c6e4f6f1f232e5fa82311/3a99ab70-61f2-49d6-b0cf-46a1bd42a0e5/PEMLogotipo+Principal.png?content-type=image%2Fpng",
+  "topBorder": false,
+  "locations": [
+    "CDMX — Alejandro Dumas 42 Polanco Chapultepec, Deleg. Miguel Hidalgo, Cd. De México C.P. 11560",
+    "Villahermosa — Avenida Hierro No. 7, Colonia Ciudad Industrial, Villahermosa, México. C.P. 86010",
+    "Carretera — Carretera México-Tuxpan KM. 190-900 Ejido Zacate Colorado Tihuatlán, Ver. 92917",
+    "Bugambilias — Corredor Industrial Bugambilias Km 202.5, Carretera Monterrey – Reynosa. Reynosa, Tamaulipas, México",
+    "Reynosa — Monterrey-Reynosa, Corr. Ind. Bugambilias. Reynosa, Tamaulipas, 88735",
+    "Monterrey — San Pedro Garza García, N.L. 66200"
+  ],
+  "fields": [
+    { "id": "fullName", "label": "Full Name", "required": true },
+    { "id": "jobTitle", "label": "Job Title", "required": true },
+    { "id": "email", "label": "Email", "required": true, "placeholder": "name@pemoilgas.com" },
+    { "id": "phone", "label": "Phone", "placeholder": "+52 9931775053" },
+    { "id": "phone2", "label": "Phone 2 (optional)", "placeholder": "+52 7821292152" },
+    { "id": "location", "label": "Office Location", "type": "select", "options": "locations" }
+  ],
+  "template": "pemoil"
+}
