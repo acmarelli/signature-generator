@@ -6,7 +6,7 @@
   // Load config and initialize
   async function init() {
     try {
-      const resp = await fetch('config.json');
+      const resp = await fetch('config.json', { cache: 'no-store' });
       config = await resp.json();
       applyTheme(config.colors);
       renderForm(config);
@@ -209,12 +209,14 @@ ${inlinedHtml}
         return `<span style="color:${cfg.colors.text};">${loc}</span>`;
       }).join(` <span style="color:${cfg.colors.primary};margin:0 4px;">&bull;</span> `);
 
-      return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:${cfg.colors.text};line-height:1.5;">
-  <tr><td colspan="2" style="border-top:2px solid ${cfg.colors.accent};padding-bottom:14px;"></td></tr>
+      return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:${cfg.colors.text};line-height:1.5;border-collapse:collapse;border-top:2px solid ${cfg.colors.accent};">
   <tr>
-    <td style="vertical-align:top;padding-right:24px;width:200px;">
-      <img src="${logoPath}" alt="${cfg.company}" style="width:190px;height:auto;display:block;margin-top:-8px;" />
+    <td rowspan="2" style="vertical-align:middle;padding-right:24px;width:180px;">
+      <img src="${logoPath}" alt="${cfg.company}" style="height:170px;width:auto;display:block;" />
     </td>
+    <td style="padding-bottom:14px;"></td>
+  </tr>
+  <tr>
     <td style="vertical-align:top;">
       <div style="font-size:18px;color:${cfg.colors.text};margin-bottom:2px;">${name}</div>
       <div style="font-size:14px;font-weight:bold;color:${cfg.colors.text};margin-bottom:10px;">${title}</div>
