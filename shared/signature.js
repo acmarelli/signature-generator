@@ -194,33 +194,34 @@ ${inlinedHtml}
     // Sesma law firm template
     sesma: function (cfg, data) {
       const name = data.fullName || 'Full Name';
-      const title = data.jobTitle || 'Job Title';
+      const title = data.jobTitle || 'Abogado / Attorney';
       const phone = data.phone || '';
       const email = data.email || 'email@sesmalaw.com.mx';
       const primaryCity = data.primaryCity || cfg.locations[0];
       const website = cfg.website;
       const logoPath = cfg.logo;
 
-      const locationHTML = cfg.locations.map(loc => {
+      const orderedLocations = [primaryCity, ...cfg.locations.filter(loc => loc !== primaryCity)];
+      const locationHTML = orderedLocations.map(loc => {
         if (loc === primaryCity) {
           return `<span style="color:${cfg.colors.primary};font-weight:bold;">${loc}</span>`;
         }
-        return `<span>${loc}</span>`;
-      }).join(' <span style="color:#999;margin:0 2px;">&middot;</span> ');
+        return `<span style="color:${cfg.colors.text};">${loc}</span>`;
+      }).join(` <span style="color:${cfg.colors.primary};margin:0 4px;">&bull;</span> `);
 
       return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:${cfg.colors.text};line-height:1.5;">
-  <tr><td colspan="2" style="border-top:2px solid ${cfg.colors.accent};padding-bottom:12px;"></td></tr>
+  <tr><td colspan="2" style="border-top:2px solid ${cfg.colors.accent};padding-bottom:14px;"></td></tr>
   <tr>
-    <td style="vertical-align:top;padding-right:18px;width:110px;">
-      <img src="${logoPath}" alt="${cfg.company}" style="width:100px;height:auto;" />
+    <td style="vertical-align:top;padding-right:22px;width:130px;">
+      <img src="${logoPath}" alt="${cfg.company}" style="width:120px;height:auto;display:block;" />
     </td>
     <td style="vertical-align:top;">
-      <div style="font-size:16px;font-weight:bold;color:${cfg.colors.text};margin-bottom:1px;">${name}</div>
-      <div style="font-size:13px;color:${cfg.colors.secondary};margin-bottom:8px;">${title}</div>
-      <div style="font-size:12px;color:${cfg.colors.secondary};margin-bottom:3px;">${locationHTML}</div>
-      ${phone ? `<div style="font-size:12px;color:${cfg.colors.secondary};margin-bottom:2px;">T. ${phone}</div>` : ''}
-      <div style="margin-bottom:2px;"><a href="mailto:${email}" style="font-size:12px;color:${cfg.colors.primary};text-decoration:none;">${email}</a></div>
-      <div><a href="https://${website}" style="font-size:12px;color:${cfg.colors.secondary};text-decoration:none;">${website}</a></div>
+      <div style="font-size:18px;color:${cfg.colors.text};margin-bottom:2px;">${name}</div>
+      <div style="font-size:14px;font-weight:bold;color:${cfg.colors.text};margin-bottom:10px;">${title}</div>
+      <div style="font-size:13px;color:${cfg.colors.text};margin-bottom:2px;">${locationHTML}</div>
+      ${phone ? `<div style="font-size:13px;color:${cfg.colors.text};margin-bottom:2px;">T. ${phone}</div>` : ''}
+      <div style="margin-bottom:2px;"><a href="mailto:${email}" style="font-size:13px;color:${cfg.colors.primary};text-decoration:none;">${email}</a></div>
+      <div><a href="https://${website}" style="font-size:13px;color:${cfg.colors.text};text-decoration:none;">${website}</a></div>
     </td>
   </tr>
 </table>`;
