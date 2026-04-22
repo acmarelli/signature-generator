@@ -91,24 +91,32 @@
     preview.innerHTML = generateSignatureHTML();
   }
 
-  // Convert images in the preview to base64 using canvas
-  function inlineImagesFromPreview(html) {
-    const preview = document.getElementById('signature-preview');
-    const previewImgs = preview.querySelectorAll('img');
-    let result = html;
-    previewImgs.forEach(img => {
-      try {
-        const canvas = document.createElement('canvas');
-        canvas.width = img.naturalWidth;
-        canvas.height = img.naturalHeight;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-        const dataUrl = canvas.toDataURL('image/png');
-        result = result.replace(img.getAttribute('src'), dataUrl);
-      } catch (e) {
-        // keep original URL if canvas fails (CORS)
-      }
+  // Fetch a URL and return a base64 data URL
+  async function urlToDataUrl(url) {
+    const resp = await fetch(url, { mode: 'cors' });
+    const blob = await resp.blob();
+    return await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
     });
+  }
+
+  // Replace all <img src="..."> URLs in the signature HTML with base64 data URLs
+  async function inlineImages(html) {
+    const srcs = Array.from(new Set([...html.matchAll(/<img[^>]+src="([^"]+)"/g)].map(m => m[1])));
+    let result = html;
+    for (const src of srcs) {
+      if (src.startsWith('data:')) continue;
+      try {
+        const absolute = new URL(src, window.location.href).href;
+        const dataUrl = await urlToDataUrl(absolute);
+        result = result.split(src).join(dataUrl);
+      } catch (e) {
+        console.warn('Failed to inline image:', src, e);
+      }
+    }
     return result;
   }
 
@@ -116,7 +124,7 @@
   async function copyToClipboard() {
     const html = generateSignatureHTML();
     try {
-      const inlinedHtml = inlineImagesFromPreview(html);
+      const inlinedHtml = await inlineImages(html);
       const blob = new Blob([inlinedHtml], { type: 'text/html' });
       const item = new ClipboardItem({ 'text/html': blob });
       await navigator.clipboard.write([item]);
@@ -136,7 +144,7 @@
   // Download as HTML file
   async function downloadHTML() {
     const html = generateSignatureHTML();
-    const inlinedHtml = inlineImagesFromPreview(html);
+    const inlinedHtml = await inlineImages(html);
     const fullHTML = `<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><title>Email Signature</title></head>
@@ -308,6 +316,35 @@ ${inlinedHtml}
         <p style="margin:0;font-size:13px;color:#777777;">${cfg.company}</p>
         <p style="margin:2px 0 0 0;font-size:13px;color:#888888;">${address}</p>
       </div>
+    </td>
+  </tr>
+</table>`;
+    },
+
+    // Lanestosa SFO template
+    lanestosa: function (cfg, data) {
+      const name = data.fullName || 'Nombre Completo';
+      const title = data.jobTitle || '';
+      const email = data.email || 'nombre@lanestosa.com';
+      const phoneOffice = data.phoneOffice || '';
+      const phoneMobile = data.phoneMobile || '';
+      const website = cfg.website;
+      const address = cfg.address || '';
+      const logoPath = cfg.logo;
+
+      return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:${cfg.colors.text};line-height:1.5;border-collapse:collapse;">
+  <tr>
+    <td style="vertical-align:top;padding-right:20px;border-right:2px solid ${cfg.colors.primary};width:150px;">
+      <img src="${logoPath}" alt="${cfg.company}" style="width:140px;height:auto;display:block;" />
+    </td>
+    <td style="vertical-align:top;padding-left:20px;">
+      <div style="font-size:16px;font-weight:bold;color:${cfg.colors.text};margin-bottom:1px;">${name}</div>
+      ${title ? `<div style="font-size:13px;color:${cfg.colors.secondary};margin-bottom:8px;">${title}</div>` : ''}
+      <div style="margin-bottom:2px;"><a href="mailto:${email}" style="font-size:12px;color:${cfg.colors.primary};text-decoration:none;">${email}</a></div>
+      ${phoneOffice ? `<div style="font-size:12px;color:${cfg.colors.secondary};margin-bottom:2px;">Tel. ${phoneOffice}</div>` : ''}
+      ${phoneMobile ? `<div style="font-size:12px;color:${cfg.colors.secondary};margin-bottom:6px;">Cel. ${phoneMobile}</div>` : ''}
+      ${address ? `<div style="font-size:11px;color:${cfg.colors.secondary};margin-bottom:2px;">${address}</div>` : ''}
+      <div><a href="https://${website.replace(/^www\./,'')}" style="font-size:12px;color:${cfg.colors.primary};text-decoration:none;font-weight:bold;">${website}</a></div>
     </td>
   </tr>
 </table>`;
