@@ -1,0 +1,21 @@
+{
+  "company": "Lanestosa SFO",
+  "website": "www.lanestosa.com",
+  "colors": {
+    "primary": "#F5A623",
+    "text": "#4A4A4A",
+    "accent": "#F5A623",
+    "secondary": "#9B9B9B"
+  },
+  "logo": "https://raw.githubusercontent.com/acmarelli/signature-generator/main/clients/lanestosa/logo.png",
+  "address": "Bosque de Olivos 23, Bosques de las Lomas, CDMX 11700 México",
+  "topBorder": false,
+  "fields": [
+    { "id": "fullName", "label": "Nombre Completo", "required": true, "placeholder": "Oscar Bernal García" },
+    { "id": "jobTitle", "label": "Cargo", "required": true, "placeholder": "Director de Finanzas y Administración" },
+    { "id": "email", "label": "Email", "required": true, "placeholder": "nombre@lanestosa.com" },
+    { "id": "phoneOffice", "label": "Teléfono (Tel.)", "placeholder": "55 5781 2436" },
+    { "id": "phoneMobile", "label": "Celular (Cel.)", "placeholder": "+52 1 (55) 1295 6599" }
+  ],
+  "template": "lanestosa"
+}
