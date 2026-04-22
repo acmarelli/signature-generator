@@ -212,8 +212,8 @@ ${inlinedHtml}
       return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:${cfg.colors.text};line-height:1.5;">
   <tr><td colspan="2" style="border-top:2px solid ${cfg.colors.accent};padding-bottom:14px;"></td></tr>
   <tr>
-    <td style="vertical-align:middle;padding-right:24px;width:180px;">
-      <img src="${logoPath}" alt="${cfg.company}" style="width:170px;height:auto;display:block;" />
+    <td style="vertical-align:top;padding-right:24px;width:200px;">
+      <img src="${logoPath}" alt="${cfg.company}" style="width:190px;height:auto;display:block;margin-top:-8px;" />
     </td>
     <td style="vertical-align:top;">
       <div style="font-size:18px;color:${cfg.colors.text};margin-bottom:2px;">${name}</div>
