@@ -226,7 +226,11 @@ ${inlinedHtml}
       <div><a href="https://${website}" style="font-size:13px;color:${cfg.colors.text};text-decoration:none;">${website}</a></div>
     </td>
   </tr>
-</table>`;
+</table>
+<div style="font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#888888;line-height:1.4;margin-top:12px;max-width:620px;">
+  <div style="margin-bottom:6px;">This e-mail and any files transmitted with it are confidential and are intended solely for the use of the individual or entity to which they are addressed. This communication may contain material protected by the attorney-client privilege.</div>
+  <div>Este correo electr&oacute;nico y cualquier expediente asociado al mismo, son confidenciales y su uso esta dirigido a la persona o a la sociedad a los cuales se env&iacute;a. Esta comunicaci&oacute;n puede contener material protegido por secreto profesional y para uso exclusivo del cliente.</div>
+</div>`;
     },
 
     // Alom infrastructure template
